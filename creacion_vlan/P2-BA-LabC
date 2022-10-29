@@ -1,4 +1,4 @@
-# Configuracion realizadas en el switch P2-BA-Aulas
+# Configuracion realizadas en el switch P2-BA-LabC
 ## Creacion de VLANs
 ```
 enable
@@ -35,14 +35,15 @@ show vlan brief
 ```
 enable
 configure terminal
-interface range fa0/2 - 11
+interface range fa0/3 - 16
 switchport mode access
-switchport access vlan 90
+switchport access vlan 30
 no shutdown
 exit
 end
+show vlan brief
 ```
-## Creacion del enlace troncal
+## Creacion del enlace troncal POR SI ACASO
 
 ```
 enable
@@ -53,15 +54,31 @@ no shutdown
 exit
 end
 ```
-### Switch S-BA
+## Creacion de EtherChannel
+
 ```
 enable
 configure terminal
-interface fa0/17
+interface range fa0/1-2
+channel-group 3 mode active
+exit
+interface port-channel 3
 switchport mode trunk
-no shutdown
+switchport trunk allowed vlan 30
 exit
 end
+show etherchannel summary
+```
+### Switch S-BA
+```
+enable 
+configure terminal
+interface range fa0/14-15
+shutdown
+channel-group 3 mode active
+no shutdown
+end
+show etherchannel summary
 ```
 ## Asigancion de IP para enlace con la vlan de admin
 
@@ -69,7 +86,7 @@ end
 enable
 configure terminal
 interface vlan 110
-ip address 192.168.110.20 255.255.255.0
+ip address 192.168.110.18 255.255.255.0
 no shutdown
 exit
 ip default-gateway 192.168.110.1

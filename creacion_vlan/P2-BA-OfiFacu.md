@@ -1,4 +1,4 @@
-# Configuracion realizadas en el switch P2-BA-Aulas
+# Configuracion realizadas en el switch P2-BA-OfiFacu
 ## Creacion de VLANs
 ```
 enable
@@ -35,9 +35,27 @@ show vlan brief
 ```
 enable
 configure terminal
-interface range fa0/2 - 11
+interface range fa0/2 - 7
 switchport mode access
-switchport access vlan 90
+switchport access vlan 50
+no shutdown
+exit
+end
+
+enable
+configure terminal
+interface range fa0/8 - 14
+switchport mode access
+switchport access vlan 60
+no shutdown
+exit
+end
+
+enable
+configure terminal
+interface range fa0/15 - 20
+switchport mode access
+switchport access vlan 70
 no shutdown
 exit
 end
@@ -57,7 +75,7 @@ end
 ```
 enable
 configure terminal
-interface fa0/17
+interface fa0/16
 switchport mode trunk
 no shutdown
 exit
@@ -69,7 +87,7 @@ end
 enable
 configure terminal
 interface vlan 110
-ip address 192.168.110.20 255.255.255.0
+ip address 192.168.110.19 255.255.255.0
 no shutdown
 exit
 ip default-gateway 192.168.110.1
