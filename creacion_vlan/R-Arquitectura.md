@@ -1,4 +1,4 @@
-### Switch S-BA
+### Router R-Arquitectura
 # Configuracion de Sub Interfaces
 ```
 enable
